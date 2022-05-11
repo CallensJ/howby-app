@@ -27,6 +27,7 @@ const MessagesComponent = () => {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      <Text></Text>
     </>
   );
 };
