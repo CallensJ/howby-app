@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
+
 import {
   StyleSheet,
   Text,
@@ -12,50 +14,34 @@ import {
   Image,
 } from "react-native";
 
-//const ICONS
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      dataSource: null,
-    };
-  }
+const App = () => {
+    const navigation = useNavigation();
+    const [dataSource, setDataSource] = useState([]);
+    const [loading, setIsLoading] = useState(true);
 
-  componentDidMount() {
-    return fetch("http://127.0.0.1:8000/api/pois/")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        //console.log(responseJson)
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson["hydra:member"],
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/pois/")
+        .then((response) => response.json())
+        .then((responseJson) => {
+            //console.log(responseJson)
+            setDataSource(responseJson["hydra:member"]);
+            setIsLoading(false);
+        })
+        .catch((error) => {
+            console.error(error);
         });
-      })
+    }, []);
 
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator />
-        </View>
-      );
-    } else {
-      console.log(this.state.dataSource);
-      return (
+    return (
         <View style={styles.container}>
           <FlatList
-            data={this.state.dataSource}
+            data={dataSource}
             keyExtractor={(x, i) => i}
             renderItem={({ item }) => (
               <>
-                <View>
-                  <Pressable style={styles.inline}>
+                <SafeAreaView>
+                  <Pressable style={styles.inline}
+                  onPress={()=> navigation.navigate("DescriptionScreen")}>
                     <View>
                       <Image
                         source={{
@@ -66,65 +52,58 @@ export default class App extends React.Component {
                     </View>
                     <View style={{ marginTop: "1rem" }}>
                       <Text
-                        style={{
-                          fontSize: 20,
-                          marginBottom: ".5rem",
-                          marginLeft: "1rem",
-                        }}
+                      
+                      title="test"
+                        style={styles.title}
                       >{`${item.name}`}</Text>
-
-                      <Text
-                        style={{ marginLeft: "1rem" }}
-                      >{`${item.description}`}</Text>
+                        {item.description ? 
+                        <Text style={{ marginLeft: "1rem" }}>
+                          {`${item.description?.slice(0,50)}`}
+                      </Text>
+                      : null
+            }
+                
                     </View>
                   </Pressable>
-                </View>
+                </SafeAreaView>
 
                 <View style={styles.bottomComponents}>
-                  <Pressable>
-                    <Text>Exclusif</Text>
-                  </Pressable>
-
-                  <Text>Rating</Text>
-                  <Text>Posts</Text>
+                  <Text style={styles.exclusifBtn}>Exclusif</Text>
+                  <Text style={styles.rating}>
+                    <Image source={{uri: 'https://img.icons8.com/ios-glyphs/30/000000/star--v1.png'}} style={{height: 15, width: 15,
+                  marginRight: 10}}/>Rating</Text>
+                  <Text style={styles.posts}>#  Posts</Text>
                   <View>
                     <Pressable
-                   
-                    style={({ pressed }) => [
-                      {
-                        backgroundColor: pressed
-                          ? 'red'
-                          : 'white'
-                      },
-                      styles.favoriBtn
-                    ]}>
-                          
-                          {({ pressed }) => (
-          <Text>
-            {pressed ? 'Favori' : ' + Favori'}
-          </Text>
-        )}
-                    
-
+                      style={({ pressed }) => [
+                        {
+                          backgroundColor: pressed ? "red" : "white",
+                        },
+                        styles.favoriBtn,
+                      ]}
+                    >
+                      {({ pressed }) => (
+                        <Text>{pressed ? "Favori" : " +    Favori"}</Text>
+                      )}
                       
                     </Pressable>
+                    
                   </View>
-                  <Text></Text>
+                  <Text>+</Text>
                 </View>
               </>
             )}
           />
         </View>
       );
-    }
-  }
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
+    
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     margin: "1rem",
   },
   item: {
@@ -135,27 +114,62 @@ const styles = StyleSheet.create({
     width: "50px",
     height: "50px",
   },
+  title:{
+    fontSize: 17,
+    marginTop: -15,
+    marginLeft: "1rem",
+    marginBottom: '.2rem'
+  },
   bottomComponents: {
     marginTop: ".5rem",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     marginBottom: "1rem",
     paddingBottom: ".5rem",
     borderBottomColor: "gray",
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
+    textAlignVertical: 'center'
   },
   favoriBtn:{
-    fontWeight: "bold",
-    borderRadius: 8,
+    fontWeight: "",
+    borderRadius: 20,
     borderWidth: 2,
-    borderColor: 'red',
+    borderColor: "red",
     paddingLeft: 10,
     paddingRight: 10,
+    paddingTop: 3,
+  
+  },
+  exclusifBtn: {
+    fontWeight: "bold",
+    borderRadius: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
     paddingTop: 5,
-    paddingBottom: 5
+   color: "#fff",
+    backgroundColor: "#c48d52",
+  },
+  rating:{
+    borderRadius: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 3,
+    paddingBottom: 3,
+    backgroundColor: "#efefef",
+    paddingTop: 3,
+
     
   },
+  posts:{
+    borderRadius: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 3,
+    paddingBottom: 3,
+    backgroundColor: "#efefef",
+    paddingTop: 5,
 
+  },
   inline: {
     flexDirection: "row",
   },
