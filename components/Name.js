@@ -9,6 +9,8 @@ import {
 import React from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 
+
+
 const Name = () => {
   return (
     <>
@@ -45,25 +47,34 @@ const Name = () => {
         </Pressable>
       </View>
     </>
+
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   inline: {
     flexDirection: "row",
     alignItems: "center",
   },
+
   img: {
     width: "50px",
     height: "50px",
   },
+
   companyName: {
     fontWeight: "bold",
   },
+
   icons: {
     flexDirection: "row",
     justifyContent: "flex-end",
   },
 });
+
+
 
 export default Name;

@@ -5,7 +5,10 @@ import MessagesScreen from "../screens/MessagesScreen";
 import SearchScreen from "../screens/SearchScreen";
 import CameraScreen from "../screens/CameraScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
-import AccueilScreen from "../screens/AccueilScreen";
+// import AccueilScreen from "../screens/AccueilScreen";
+import StackNavigation from "./StackNavigation";
+
+
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +31,7 @@ const BottomTab = () => {
     >
       <Tab.Screen
         name="Accueil"
-        component={AccueilScreen}
+        component={StackNavigation}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -123,5 +126,6 @@ const BottomTab = () => {
     </Tab.Navigator>
   );
 };
+
 
 export default BottomTab;

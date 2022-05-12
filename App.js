@@ -8,10 +8,8 @@ import BottomTab from './navigation/BottomTab';
 const App = () => {
   return (
     <>
-    <NavigationContainer>
       
-      <StackNavigation />
-    </NavigationContainer>
+
     <NavigationContainer>
       <BottomTab />
     </NavigationContainer>

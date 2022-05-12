@@ -6,7 +6,7 @@ import MiddleArea from '../components/MiddleArea'
 const DescriptionScreen = () => {
   return (
     <>
-      <SafeAreaView  style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Name />
         <MiddleArea />
       </SafeAreaView>

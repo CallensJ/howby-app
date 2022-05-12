@@ -1,41 +1,54 @@
-import { View, Text, SafeAreaView, Image } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native-web";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const HeaderComponent = () => {
   return (
     <>
-      <SafeAreaView>
-        <View>
-          <Text style={{ fontWeight: "900" }}>Messages</Text>
-        </View>
-        <View>
-          <TouchableOpacity>
-            <Image source={require("../../assets/icons/search-outline.svg")} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/ios-glyphs/60/000000/new-message.png",
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              source={{
-                uri: "https://img.icons8.com/ios/50/ffffff/compass--v1.png",
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <SafeAreaView style={{flexDirection: 'row', justifyContent: 'space-between', alignItems:'center'}}>
+          <View>
+            <Text style={{ fontWeight: "900" }}>Messages</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableOpacity>
+              <Ionicons name = {"search-outline"} size={25} style={styles.headerIcons} />
 
-      <View>
-        <Text>Sorties et Groupes</Text>
-        <Text>Slider ici ! </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                source={{
+                  uri: "https://img.icons8.com/ios-glyphs/60/000000/new-message.png",
+                }} style ={styles.headerIcons}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Ionicons name = {"compass-outline"} size={25} />
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
       </View>
     </>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    margin: "1rem",
+  },
+  headerIcons:{
+    width: 25,
+    height: 25,
+    marginLeft: '1rem'
+    
+  }
+});
 
 export default HeaderComponent;

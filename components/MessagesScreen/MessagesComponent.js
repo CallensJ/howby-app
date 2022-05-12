@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet,Pressable } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 
 const MessagesComponent = () => {
   return (
@@ -22,15 +23,18 @@ const MessagesComponent = () => {
         </View>
 
         <View>
-          <TouchableOpacity>
-            <Icon name="camera-outline.svg" size={30} />
-          </TouchableOpacity>
+          <Pressable>
+            
+          </Pressable>
         </View>
       </SafeAreaView>
       <Text></Text>
     </>
   );
 };
+
+
+
 
 const styles = StyleSheet.create({});
 
