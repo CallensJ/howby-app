@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet,Pressable } from "react-native";
 import React from "react";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
@@ -11,11 +11,11 @@ const MessagesComponent = () => {
         <Text>Discussions</Text>
       </View>
 
-      <SafeAreaView style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      <SafeAreaView>
         <View>
           <Text>Vu .</Text>
           <TouchableOpacity>
-            <Icon name="person-circle" size={30} />
+            <Ionicons name="person-circle" size={30} />
           </TouchableOpacity>
           <TouchableOpacity>
             <Text>Matthieu B</Text>
@@ -24,11 +24,11 @@ const MessagesComponent = () => {
 
         <View>
           <Pressable>
-            
+          <Ionicons name = {"camera-outline"} size={25} style={styles.icon}/>
           </Pressable>
         </View>
       </SafeAreaView>
-      <Text></Text>
+      <Text> c'est pour quand la revanche !? - 2min</Text>
     </>
   );
 };
@@ -36,6 +36,11 @@ const MessagesComponent = () => {
 
 
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icon:{
+    width: 25,
+    height: 25
+  }
+});
 
 export default MessagesComponent;

@@ -31,7 +31,7 @@ const HeaderComponent = () => {
               />
             </TouchableOpacity>
             <TouchableOpacity>
-                <Ionicons name = {"compass-outline"} size={25} />
+                <Ionicons name = {"compass-outline"} size={25} style={styles.headerIcons}/>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
