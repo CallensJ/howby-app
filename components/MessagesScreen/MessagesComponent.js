@@ -4,43 +4,33 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
-const MessagesComponent = () => {
+
+
+const MessagesComponent = ({messages}) => {
+  console.log(messages);
   return (
     <>
       <View>
-        <Text>Discussions</Text>
+        
       </View>
 
-      <SafeAreaView>
-        <View>
-          <Text>Vu .</Text>
-          <TouchableOpacity>
-            <Ionicons name="person-circle" size={30} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>Matthieu B</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <Pressable>
-          <Ionicons name = {"camera-outline"} size={25} style={styles.icon}/>
-          </Pressable>
-        </View>
-      </SafeAreaView>
-      <Text> c'est pour quand la revanche !? - 2min</Text>
     </>
   );
 };
 
 
+const Commentaire = (messagescomponent) => (
+  <View>
+    <Text>{messagescomponent.Comment}</Text>
+  </View>
+)
 
 
 const styles = StyleSheet.create({
   icon:{
     width: 25,
     height: 25
-  }
+  },
 });
 
 export default MessagesComponent;
