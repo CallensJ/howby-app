@@ -8,7 +8,7 @@ import TeamComponent from "../components/MessagesScreen/TeamComponent";
 import { MESSAGES } from "../data/Messages";
 import { USERS } from "../data/Users";
 
-const MessagesScreen = () => {
+const MessagesScreen = ({navigation}) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const MessagesScreen = () => {
               <Text>{msg.user}</Text>
               </View>
               <View>
-                <Pressable>
+                <Pressable onPress={() => navigation.navigate("Camera")}>
                   <Ionicons name="camera-outline" size={20} />
                 </Pressable>
               </View>
@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
 
   vuStyle:{
     padding: '5px',
-    borderRadius: '50%',
+    borderRadius: 50,
     borderWidth: 1,
     borderColor: 'red',
     textAlign: 'center'
   },
   vuStyleNotSeen:{
     padding: '5px',
-    borderRadius: '50%',
+    borderRadius: 50,
     borderWidth: 1,
     borderColor: 'black',
     textAlign: 'center'

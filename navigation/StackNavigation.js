@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 //screens 
 import HomeScreen from '../screens/HomeScreen';
 import DescriptionScreen from '../screens/DescriptionScreen';
+import CameraScreen from '../screens/CameraScreen';
 
 
 
@@ -17,6 +18,7 @@ const StackNavigation = () => {
         <Stack.Group>
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="DescriptionScreen" component={DescriptionScreen} />
+          <Stack.Screen name="Camera" component={CameraScreen} />
         </Stack.Group>
       </Stack.Navigator>
 

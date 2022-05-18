@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center'
   },
   favoriBtn:{
-    fontWeight: "",
     borderRadius: 20,
     borderWidth: 2,
     borderColor: "red",
