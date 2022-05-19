@@ -4,11 +4,11 @@ export const USERS = [
         image: '../../assets/icons/person-circle.svg'
     },
     {
-        user: 'Le Bla Bar',
+        user: 'le Bla Bar',
         image: '../../assets/icons/person-circle.svg'
     },
     {
-        user: 'David Hawkins',
+        user: 'david Hawkins',
         image: '../../assets/icons/person-circle.svg'
     },
     {

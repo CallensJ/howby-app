@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { Camera } from 'expo-camera';
 import React, { useRef, useState, useEffect } from 'react';
 import styledComponents from 'styled-components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileCamera = styledComponents(Camera)`
     width: 100%;
@@ -14,10 +15,12 @@ const ProfileCamera = styledComponents(Camera)`
 const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef();
+
   const snap = async () => {
     if (cameraRef) {
       const photo = await cameraRef.current.takePictureAsync();
       console.log(photo);
+      //AsyncStorage
     }
   };
   useEffect(() => {
